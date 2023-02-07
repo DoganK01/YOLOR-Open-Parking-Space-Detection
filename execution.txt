@@ -1,0 +1,1 @@
+python detect_PKLot.py --source PKLot/Images/PKLot_1.jpg --output PKLot/Output --cfg PKLot/yolor_p6.cfg --weights PKLot/best_370.pt --names PKLot/names_PKLot.names --conf-thres 0.1 --iou-thres 0.2 --img-size 1280 --device 0 --view-img

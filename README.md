@@ -1,5 +1,6 @@
 # YOLOR-Open-Parking-Space-Detection
 
+- The data were prepared by labeling on custom dataset.
 # Results:
 
 ![PKLot_2_emoji](https://user-images.githubusercontent.com/98788987/217115482-78f51caf-e976-4cbf-842c-0909675c0387.jpg)

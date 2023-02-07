@@ -22,6 +22,7 @@ from utils.datasets import *
 from utils.general import *
 
 ###PIL
+from PIL import Image, ImageFont, ImageDraw
 
 def xyxy2xywh_2(coord, im0):
     x1 = (int(coord[0])) 
@@ -80,11 +81,13 @@ def detect(save_img=False):
         dataset = LoadImages(source, img_size=imgsz, auto_size=64)
 
     # Get names and colors###########################
-
+    names = load_classes(names)
+    colors = [[255,255,0],[0,0,255]]
+    colors_tuple = [(255,255,0),(0,0,255)]
 
     # Get emoji ######################################
-
- 
+    emoji = ["\U0001F600", "\U0001F6AB"]
+    
     # Run inference
     t0 = time.time()
     img = torch.zeros((1, 3, imgsz, imgsz), device=device)  # init img
@@ -149,15 +152,18 @@ def detect(save_img=False):
 
 ############################
                     # Make into PIL Image
-
+                    im_p = Image.fromarray(im0)
 
                     # Get a drawing context
-
-
-
+                    draw = ImageDraw.Draw(im_p)
+                    font = ImageFont.truetype("OpenSansEmoji.ttf", 16, encoding="unic")
+                    
+                    tick = emoji(int(cls))
+                    color = colors_tuple[int(cls)]
+                    draw.text((xc-2,yc-2), tick, color, font=font)
 
                     # Convert back to OpenCV image and save
-
+                    im0 = np.array(im_p)
 #############################
 
 
